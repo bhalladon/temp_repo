@@ -1,6 +1,9 @@
+CRON_SETTINGS = BRANCH_NAME == "main" ? '5 23 * * *' : ""
 pipeline {
     agent any
-    
+    triggers {
+        cron(CRON_SETTINGS)
+    }
     stages {
         stage('Build') {
             steps {
