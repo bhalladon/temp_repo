@@ -4,6 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                echo "${currentBuild.getBuildCauses()}"
                 echo 'Building the application...'
                 // Add build commands here
                 sh 'mvn clean compile'
