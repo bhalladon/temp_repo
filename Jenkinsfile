@@ -9,6 +9,10 @@ pipeline {
             steps {
                 echo "${currentBuild.getBuildCauses()}"
                 echo 'Building the application...'
+                if (env.BUILD_DESCRIPTION.contains("Started by timer"){
+                    triggered_by = "Cron Job"
+                    echo "Triggered by cron job"
+                }
                 // Add build commands here
             }
         }
