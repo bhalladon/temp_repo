@@ -32,14 +32,6 @@ pipeline {
                     triggered_by = 'Manual or Other Trigger'
                     echo "Triggered by: ${triggered_by}"
                 }
-                
-                // Consider adding try-catch for better error handling
-                try {
-                    // Add build commands here
-                } catch (Exception e) {
-                    echo "Build failed: ${e.getMessage()}"
-                    throw e
-                }
     }
 }
 
