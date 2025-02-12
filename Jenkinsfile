@@ -1,4 +1,4 @@
-CRON_SETTINGS = BRANCH_NAME == "main" ? '10 23 * * *' : ""
+CRON_SETTINGS = BRANCH_NAME == "main" ? '10 55 * * *' : ""
 pipeline {
     agent any
     triggers {
@@ -9,7 +9,7 @@ pipeline {
             steps {
                 echo "${currentBuild.getBuildCauses()}"
                 echo 'Building the application...'
-                if (env.BUILD_DESCRIPTION.contains("Started by timer"){
+                if (env.BUILD_DESCRIPTION.contains("Started by timer")) {
                     triggered_by = "Cron Job"
                     echo "Triggered by cron job"
                 }
