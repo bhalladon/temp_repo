@@ -1,4 +1,4 @@
-CRON_SETTINGS = BRANCH_NAME == "main" ? '11 30 * * *' : ""
+CRON_SETTINGS = BRANCH_NAME == "main" ? '11 40 * * *' : ""
 pipeline {
     agent any
     triggers {
