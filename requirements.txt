@@ -1,0 +1,12 @@
+certifi~=2025.1
+cffi~=1.17
+gevent~=24.11
+greenlet~=3.1
+pycparser~=2.22
+selenium~=4.9
+typing_extensions~=4.12
+urllib3~=2.3
+websocket~=0.2
+websocket-client~=0.37
+zope.event~=5.0
+zope.interface~=7.2
