@@ -1,9 +1,9 @@
-CRON_SETTINGS = BRANCH_NAME == "main" ? '11 40 * * *' : ""
 pipeline {
+     agent {
         docker {
             image 'sha256:e3713252a41cd3cd08ec84a13eb08e42b3768a15f122609e0f9f7548105f657c'
         }
-    }
+     }
     stages {
         stage('Build Dependencies') {
             steps {
@@ -30,3 +30,5 @@ pipeline {
             echo 'Pipeline failed!'
         }
     }
+
+}
