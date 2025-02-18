@@ -8,7 +8,7 @@ pipeline {
         stage('Build Dependencies') {
             steps {
                     echo "###########  Install the requirements ########### "
-                    sh 'pip3 install --upgrade pip'
+                    sh 'pip install --upgrade pip'
                     echo "pip3 install -r ./requirements.txt"
                     sh 'pip install -r ./requirements.txt'
                     echo "Build Completed and requirement installed successfully"
