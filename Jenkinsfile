@@ -1,45 +1,23 @@
 CRON_SETTINGS = BRANCH_NAME == "main" ? '11 40 * * *' : ""
 pipeline {
-    agent any
-    triggers {
-        cron(CRON_SETTINGS)
+        docker {
+            image 'sha256:e3713252a41cd3cd08ec84a13eb08e42b3768a15f122609e0f9f7548105f657c'
+        }
     }
     stages {
-        stage('Build') {
+        stage('Build Dependencies') {
             steps {
-                echo "${currentBuild.getBuildCauses()}"
-                echo 'Building the application...'
-                echo "currentBuild.getBuildCauses()[0].shortDescription?:''"
-                // Add build commands here
+                    echo "###########  Install the requirements ########### "
+                    sh 'pip3 install --upgrade pip'
+                    echo "pip3 install -r ./requirements.txt"
+                    sh 'pip3 install -r ./requirements.txt'
+                    echo "Build Completed and requirement installed successfully"
             }
-        }
-        stage('Check Cron') {
-        steps {
-            script {
-                def buildCauses = currentBuild.getBuildCauses()
-                // Log build causes in a more structured way
-                buildCauses.each { cause ->
-                    echo "Build Cause: ${cause.shortDescription}"
-                }
-                
-                echo 'Building the application...'
-                
-                // More reliable way to detect timer-triggered builds
-                if (currentBuild.getBuildCauses()[0].shortDescription?:''.contains('Started by timer')) {
-                    triggered_by = 'Cron Job'
-                    echo "Triggered by cron job"
-                } else {
-                    triggered_by = 'Manual or Other Trigger'
-                    echo "Triggered by: ${triggered_by}"
-                }
-    }
-}
-
-        }
-        
+        }        
         stage('Test') {
             steps {
                 echo 'Running tests...'
+                sh "python -m test1.py"
             }
         }
     }
